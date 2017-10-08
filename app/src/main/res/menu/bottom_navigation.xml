@@ -2,4 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <item
+        android:id="@+id/action_mission"
+        android:enabled="true"
+        android:icon="@drawable/ic_misison"
+        android:title="@string/text_mission"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_profile"
+        android:enabled="true"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/text_profile"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_trophy"
+        android:enabled="true"
+        android:icon="@drawable/ic_trophy"
+        android:title="@string/text_trophy"
+        app:showAsAction="always"
+        />
 </menu>

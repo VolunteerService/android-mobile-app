@@ -45,11 +45,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".ProfileScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".ProfileScreenActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        </activity>
+        <activity android:name=".MissionsScreenActivity" android:label="Місії" />
+
+        <activity android:name=".TrophyScreenActivity" android:label="Винагороди" />
+
     </application>
 
 </manifest>

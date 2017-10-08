@@ -1,6 +1,5 @@
 package com.alexandergor.uvapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,7 +8,7 @@ import com.facebook.Profile;
 import com.squareup.picasso.Picasso;
 
 
-public class ProfileScreenActivity extends AppCompatActivity {
+public class ProfileScreenActivity extends BaseBottomNavigationActivity {
 
     private Profile profile;
 
@@ -27,5 +26,7 @@ public class ProfileScreenActivity extends AppCompatActivity {
                 .load(profile.getProfilePictureUri(200, 200))
                 .transform(new CircleTransform())
                 .into(profileUserPictureView);
+
+        initNavigation(R.id.action_profile);
     }
 }

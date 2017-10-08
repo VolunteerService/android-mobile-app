@@ -1,13 +1,14 @@
 package com.alexandergor.uvapp;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+public class TrophyScreenActivity extends BaseBottomNavigationActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_trophy_screen);
+
+        initNavigation(R.id.action_trophy);
     }
 }
