@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">UVAPP</string>
+
+    <!--Stage-->
     <string name="facebook_app_id">425664487797183</string>
     <string name="fb_login_protocol_scheme">fb425664487797183</string>
+
+    <!--Localhost-->
+    <!--<string name="facebook_app_id">425730931123872</string>-->
+    <!--<string name="fb_login_protocol_scheme">fb425730931123872</string>-->
 
     <string name="title_activity_login_screen">LoginScreenActivity</string>
     <string name="dummy_button">Dummy Button</string>

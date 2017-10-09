@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.alexandergor.uvapp.ProfileScreenActivity">
+    tools:context="com.alexandergor.uvapp.ProfileScreenActivity"
+    android:background="@color/uvs_darkgray">
 
 
     <View
@@ -48,6 +49,55 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
+    <Button
+        android:id="@+id/profileLogout"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_exit"
+        android:padding="16dp"
+        android:text="Вихід"
+        android:textSize="18sp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation" />
+
     <include layout="@layout/bottom_navigation_view" />
+
+    <TextView
+        android:id="@+id/profileCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="monospace"
+        android:text="00000"
+        android:textAlignment="center"
+        android:textColor="@color/uvs_yellow"
+        android:textSize="72sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileUserName" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="бали"
+        android:textAlignment="center"
+        android:textColor="@color/uvs_yellow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileCoins"
+        app:layout_constraintHorizontal_bias="0.501" />
 
 </android.support.constraint.ConstraintLayout>
