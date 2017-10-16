@@ -1,11 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/uvs_darkgray"
     tools:context="com.alexandergor.uvapp.MissionsScreenActivity">
+    <!--android:orientation="vertical" -->
 
-    <include layout="@layout/bottom_navigation_view" />
+    <ListView
+        android:id="@+id/allMissionsList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="79dp"
+        android:background="#FFFFFF"
 
-</android.support.constraint.ConstraintLayout>
+        />
+    <View
+        android:id="@+id/missionsListFooter"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_below="@+id/allMissionsList"
+        android:background="@drawable/missions_list_bg"
+        android:layout_marginTop="-80dp" />
+
+    <include
+        layout="@layout/bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/allMissionsList"
+        android:layout_marginTop="-56dp" />
+
+
+</android.widget.RelativeLayout>

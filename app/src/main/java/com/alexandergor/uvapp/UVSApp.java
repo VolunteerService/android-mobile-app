@@ -1,13 +1,12 @@
 package com.alexandergor.uvapp;
 
 import android.app.Application;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompatApi23;
-
-import com.facebook.AccessToken;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.Objects;
 
+import io.realm.Realm;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,6 +21,17 @@ public class UVSApp extends Application {
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static String authToken;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        Realm.init(getApplicationContext());
+        Realm realm = Realm.getDefaultInstance();
+
+
+        Log.i("Realm", realm.getPath());
+    }
 
     public static UVSApiClient getUvsApiClient(String newToken) {
 
