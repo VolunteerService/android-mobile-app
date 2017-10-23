@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">UVAPP</string>
+    <string name="app_name">UVS</string>
 
     <!--Stage-->
     <string name="facebook_app_id">425664487797183</string>
@@ -9,7 +9,6 @@
     <!--<string name="facebook_app_id">425730931123872</string>-->
     <!--<string name="fb_login_protocol_scheme">fb425730931123872</string>-->
 
-    <string name="title_activity_login_screen">LoginScreenActivity</string>
     <string name="dummy_content">UVS</string>
     <string name="text_trophy">Винагороди</string>
     <string name="text_profile">Профіль</string>
