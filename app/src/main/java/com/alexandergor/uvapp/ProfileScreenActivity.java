@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.facebook.AccessToken;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,6 +53,23 @@ public class ProfileScreenActivity extends BaseBottomNavigationActivity {
             @Override
             public void onFailure(Call<modelProfile> call, Throwable t) {
                 Log.i("API", "Failed");
+            }
+        });
+
+        String fcm_id = FirebaseInstanceId.getInstance().getToken();
+        Log.i("FCM", fcm_id);
+
+        Call<ResponseBody> reqFCMRegister = api.registerFCM(fcm_id);
+        reqFCMRegister.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("API", "FCM id registered");
+                Log.i("API", response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("API", "FCM registration failed");
             }
         });
 

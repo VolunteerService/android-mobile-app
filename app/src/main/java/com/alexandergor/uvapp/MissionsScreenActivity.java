@@ -8,11 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.facebook.AccessToken;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,8 +33,8 @@ public class MissionsScreenActivity extends BaseBottomNavigationActivity {
         String authToken = AccessToken.getCurrentAccessToken().getToken();
         UVSApiClient api = UVSApp.getUvsApiClient(authToken);
 
-        Call<List<modelMission>> request = api.listMissions();
-        request.enqueue(new Callback<List<modelMission>>() {
+        Call<List<modelMission>> reqMissions = api.listMissions();
+        reqMissions.enqueue(new Callback<List<modelMission>>() {
             @Override
             public void onResponse(Call<List<modelMission>> call, Response<List<modelMission>> response) {
                 Log.i("API", "Missions list retrieved");
