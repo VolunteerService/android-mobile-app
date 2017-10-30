@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "200982448595",
+    "firebase_url": "https://uvsapp-bfd45.firebaseio.com",
+    "project_id": "uvsapp-bfd45",
+    "storage_bucket": "uvsapp-bfd45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200982448595:android:857e8e0b95cdf557",
+        "android_client_info": {
+          "package_name": "com.alexandergor.uvapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "200982448595-b81kd7ksdo1l8qammo8cq2ghdaf7ac6j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alexandergor.uvapp",
+            "certificate_hash": "fec4bffbe82467d9057a4e7e7791e96d603b7e2f"
+          }
+        },
+        {
+          "client_id": "200982448595-s2eccd4e8nnb4r91lv82sskf6c203j9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCt_l8IjXGEWDamlfeK1xiu1dSezIEY9PE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "200982448595-s2eccd4e8nnb4r91lv82sskf6c203j9a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
