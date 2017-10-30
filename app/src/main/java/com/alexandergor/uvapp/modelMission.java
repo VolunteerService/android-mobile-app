@@ -1,9 +1,19 @@
 package com.alexandergor.uvapp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+
+class submodelParticipant extends RealmObject {
+    @PrimaryKey
+    String fb_id;
+
+    String name;
+}
 
 public class modelMission extends RealmObject {
     @PrimaryKey
@@ -23,6 +33,8 @@ public class modelMission extends RealmObject {
 
     double hours;
     int max_participants;
+
+    RealmList<submodelParticipant> participants;
 
     boolean active;
 }
