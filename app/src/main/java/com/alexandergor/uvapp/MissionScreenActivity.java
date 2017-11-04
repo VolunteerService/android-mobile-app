@@ -5,10 +5,7 @@ import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import io.realm.Realm;
@@ -29,6 +26,8 @@ public class MissionScreenActivity extends AppCompatActivity {
 
         TextView missionTitle = (TextView) findViewById(R.id.missionTitle);
         TextView missionDescription = (TextView) findViewById(R.id.missionDescription);
+        TextView missionDateTime = (TextView) findViewById(R.id.missionDateTime);
+        TextView missionCity = (TextView) findViewById(R.id.missionCity);
 
         Log.i("Mission", item.participants.toString());
 
@@ -41,12 +40,27 @@ public class MissionScreenActivity extends AppCompatActivity {
 
         // TODO: 11/4/17  find better solution for listview inside scrollable
         LinearLayout participantsList = (LinearLayout) findViewById(R.id.missionParticipants);
-        for (int i = 0; i < participantListAdatper.getCount(); i++) {
+        final int pacticipantsCount = participantListAdatper.getCount();
+
+        if(pacticipantsCount > 0) {
+            TextView participantsLabel = (TextView) findViewById(R.id.participantsLabel);
+            participantsLabel.setText(
+                    String.format(
+                            "Задіяно волонтерів: %d з можливих %d",
+                            pacticipantsCount,
+                            item.max_participants
+                    )
+            );
+        }
+
+        for (int i = 0; i < pacticipantsCount; i++) {
             participantsList.addView(
                     participantListAdatper.getView(i, null, participantsList)
             );
         }
 
+        missionDateTime.setText(item.date_start + " — " + item.date_finish);
+        missionCity.setText(item.city);
         missionTitle.setText(item.title);
         missionDescription.setText(item.description);
     }
