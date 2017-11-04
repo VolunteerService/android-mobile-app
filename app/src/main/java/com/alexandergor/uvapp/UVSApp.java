@@ -23,6 +23,8 @@ public class UVSApp extends Application {
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static String authToken;
 
+    public static modelProfile UserProfile;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,7 +32,7 @@ public class UVSApp extends Application {
         Realm.init(getApplicationContext());
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .schemaVersion(1)
+                .schemaVersion(2)
                 .migration(new ModelsMigration())
                 .build();
 
