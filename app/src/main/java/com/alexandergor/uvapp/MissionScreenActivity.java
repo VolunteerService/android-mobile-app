@@ -1,6 +1,5 @@
 package com.alexandergor.uvapp;
 
-import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,11 +30,6 @@ public class MissionScreenActivity extends AppCompatActivity {
 
         Log.i("Mission", item.participants.toString());
 
-        Fragment acctionApply = new MissionApplyButton();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.missionActionsHolder, acctionApply);
-        fragmentTransaction.commit();
-
         modelMissionParticipantListAdatper participantListAdatper = new modelMissionParticipantListAdatper(item.participants);
 
         // TODO: 11/4/17  find better solution for listview inside scrollable
@@ -53,11 +47,40 @@ public class MissionScreenActivity extends AppCompatActivity {
             );
         }
 
+        modelParticipant currentUserParticipant = null;
+
         for (int i = 0; i < pacticipantsCount; i++) {
-            participantsList.addView(
-                    participantListAdatper.getView(i, null, participantsList)
-            );
+            modelParticipant participant = participantListAdatper.getItem(i);
+            Log.i("Participant", participant.id);
+            Log.i("Participant", UVSApp.UserProfile._id);
+
+            if(participant.id.equals(UVSApp.UserProfile._id)) {
+                currentUserParticipant = participant;
+            }
+
+            if(participant.status.equals("APPROVED")) {
+                participantsList.addView(
+                        participantListAdatper.getView(i, null, participantsList)
+                );
+            }
         }
+
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+        if (currentUserParticipant == null) {
+            fragmentTransaction.add(R.id.missionActionsHolder, new MissionApplyButton());
+        } else {
+            switch (currentUserParticipant.status) {
+                case "NEW":
+                    fragmentTransaction.add(R.id.missionActionsHolder, new MissionRefuseButton());
+                    break;
+                case "APPROVED":
+                    break;
+                case "DECLINED":
+                    break;
+            }
+        }
+        fragmentTransaction.commit();
 
         missionDateTime.setText(item.date_start + " — " + item.date_finish);
         missionCity.setText(item.city);
