@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,6 +28,13 @@ public class UVSApp extends Application {
         super.onCreate();
 
         Realm.init(getApplicationContext());
+
+        RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
+                .schemaVersion(1)
+                .migration(new ModelsMigration())
+                .build();
+
+        Realm.setDefaultConfiguration(realmConfiguration);
         Realm realm = Realm.getDefaultInstance();
 
 
