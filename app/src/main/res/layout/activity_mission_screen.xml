@@ -21,31 +21,51 @@
         android:text="TextView"
         android:textColor="@color/uvs_darkgray"
         android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/missionDescription"
+    
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/missionTitle"
-        android:padding="13dp"
-        android:text="TextView"
-        android:textColor="@color/uvs_gray"
-        android:textSize="16sp"
-        tools:layout_editor_absoluteX="79dp"
-        tools:layout_editor_absoluteY="55dp" />
+        android:fillViewport="true"
+        >
 
-    <RelativeLayout
-        android:id="@+id/missionActionsHolder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/missionDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/missionTitle"
+                android:padding="13dp"
+                android:text="TextView"
+                android:textColor="@color/uvs_gray"
+                android:textSize="16sp"
+                tools:layout_editor_absoluteX="79dp"
+                tools:layout_editor_absoluteY="55dp" />
 
-    <ListView
-        android:id="@+id/missionParticipants"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+            <FrameLayout
+                android:id="@+id/missionActionsHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:id="@+id/missionParticipants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"/>
+            <!--<ListView-->
+                <!--android:id="@+id/missionParticipants"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--/>-->
+
+        </LinearLayout>
+    </ScrollView>
 
 </android.widget.LinearLayout>

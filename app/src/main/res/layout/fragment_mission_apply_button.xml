@@ -1,9 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_marginBottom="45dp"
-    android:layout_marginTop="45dp"
+    android:layout_height="wrap_content"
+    android:paddingBottom="50dp"
+    android:paddingTop="50dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     tools:context="com.alexandergor.uvapp.MissionApplyButton">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,10 +17,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="13dp"
         android:layout_marginTop="8dp"
-        android:text="@string/hello_blank_fragment"
+        android:text="Долучися до місії, зроби світ кращим!"
         android:textColor="#272727"
-        android:textSize="16sp"
-        tools:text="Долучися до місії, зроби світ кращим!" />
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/missionApplyButton"
@@ -28,11 +29,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginEnd="13dp"
         android:background="@color/colorPrimary"
-        android:elevation="0dp"
-        android:shadowColor="#29000000"
-        android:shadowDx="2"
-        android:shadowDy="3"
-        android:shadowRadius="2"
+        android:elevation="2dp"
         android:text="@string/apply_btn_caption"
         android:textAllCaps="false"
         android:textColor="#272727"
