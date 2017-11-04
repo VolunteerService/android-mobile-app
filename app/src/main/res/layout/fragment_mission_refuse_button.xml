@@ -1,13 +1,40 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginBottom="45dp"
+    android:layout_marginTop="45dp"
     tools:context="com.alexandergor.uvapp.MissionRefuseButton">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/missionRefuseText"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="8dp"
+        android:text="Ви відправили заявку на участь "
+        android:textColor="#272727"
+        android:textSize="16sp" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/missionRefuseButton"
+        android:layout_width="107dp"
+        android:layout_height="49dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="13dp"
+        android:background="@color/colorPrimary"
+        android:elevation="0dp"
+        android:shadowColor="#29000000"
+        android:shadowDx="0"
+        android:shadowDy="3"
+        android:shadowRadius="2"
+        android:text="@string/refuse_btn_caption"
+        android:textAllCaps="false"
+        android:textColor="#272727"
+        android:textSize="16sp" />
+
+</RelativeLayout>
