@@ -138,26 +138,27 @@ public class LoginScreenActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String authToken = AccessToken.getCurrentAccessToken().getToken();
-        UVSApiClient api = UVSApp.getUvsApiClient(authToken);
-        Call<modelProfile> request = api.getProfile();
-        request.enqueue(new Callback<modelProfile>() {
-            @Override
-            public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
-                Log.i("API", response.message());
+        if( AccessToken.getCurrentAccessToken() != null) {
+            String authToken = AccessToken.getCurrentAccessToken().getToken();
+            UVSApiClient api = UVSApp.getUvsApiClient(authToken);
+            Call<modelProfile> request = api.getProfile();
+            request.enqueue(new Callback<modelProfile>() {
+                @Override
+                public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
+                    Log.i("API", response.message());
 
-                Log.i("API", response.toString());
+                    Log.i("API", response.toString());
 
-                UVSApp.UserProfile = response.body();
-                initProfileActivity(UVSApp.UserProfile);
-            }
+                    UVSApp.UserProfile = response.body();
+                    initProfileActivity(UVSApp.UserProfile);
+                }
 
-            @Override
-            public void onFailure(Call<modelProfile> call, Throwable t) {
-                Log.i("API", "Failed");
-            }
-        });
-        initProfileActivity(UVSApp.UserProfile);
+                @Override
+                public void onFailure(Call<modelProfile> call, Throwable t) {
+                    Log.i("API", "Failed");
+                }
+            });
+        }
     }
 
     @Override

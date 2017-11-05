@@ -70,19 +70,28 @@ public class MissionScreenActivity extends AppCompatActivity {
         if (currentUserParticipant == null) {
             fragmentTransaction.add(R.id.missionActionsHolder, new MissionApplyButton());
         } else {
+            Log.i("Participant", currentUserParticipant.status);
             switch (currentUserParticipant.status) {
-                case "NEW":
-                    fragmentTransaction.add(R.id.missionActionsHolder, new MissionRefuseButton());
-                    break;
                 case "APPROVED":
+                    fragmentTransaction.add(
+                            R.id.missionActionsHolder,
+                            MissionApprovedBlock.newInstance("https://t.me/VolunteerTalks")
+                    );
                     break;
                 case "DECLINED":
+                    fragmentTransaction.add(
+                            R.id.missionActionsHolder,
+                            MissionDeclinedBlock.newInstance(currentUserParticipant.comment)
+                    );
+                    break;
+                case "NEW":
+                    fragmentTransaction.add(R.id.missionActionsHolder, new MissionRefuseButton());
                     break;
             }
         }
         fragmentTransaction.commit();
 
-        missionDateTime.setText(item.date_start + " — " + item.date_finish);
+        missionDateTime.setText(item.getDate());
         missionCity.setText(item.city);
         missionTitle.setText(item.title);
         missionDescription.setText(item.description);

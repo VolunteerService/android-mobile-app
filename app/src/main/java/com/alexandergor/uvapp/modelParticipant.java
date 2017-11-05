@@ -7,6 +7,8 @@ public class modelParticipant extends RealmObject {
     @PrimaryKey
     String id;
 
+    String user_id;
+
     String fb_id;
 
     String name;

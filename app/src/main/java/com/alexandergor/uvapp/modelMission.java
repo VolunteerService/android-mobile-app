@@ -1,7 +1,8 @@
 package com.alexandergor.uvapp;
 
-import com.google.gson.annotations.SerializedName;
+import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.realm.RealmList;
@@ -19,8 +20,8 @@ public class modelMission extends RealmObject {
     String teaser;
     String description;
 
-    Date date_start;
-    Date date_finish;
+    Date start;
+    Date finish;
 
     String city;
 
@@ -30,4 +31,11 @@ public class modelMission extends RealmObject {
     RealmList<modelParticipant> participants;
 
     boolean active;
+
+    public String getDate() {
+        Log.i("ModelMission", start.toString());
+        String from = new SimpleDateFormat("dd.MM H:m").format(start);
+        String to = new SimpleDateFormat("dd.MM H:m").format(finish);
+        return from + " — " + to;
+    }
 }

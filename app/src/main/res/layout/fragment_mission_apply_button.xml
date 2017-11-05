@@ -1,25 +1,29 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="50dp"
-    android:paddingTop="50dp"
+    android:layout_marginBottom="25dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
     android:clipChildren="false"
     android:clipToPadding="false"
+    android:padding="14dp"
+    android:background="@drawable/mission_apply_action_bg"
     tools:context="com.alexandergor.uvapp.MissionApplyButton">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/missionApplyText"
         android:layout_width="146dp"
-        android:layout_height="wrap_content"
+        android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="3dp"
         android:text="Долучися до місії, зроби світ кращим!"
         android:textColor="#272727"
-        android:textSize="16sp"/>
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/missionApplyButton"
@@ -27,12 +31,11 @@
         android:layout_height="49dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="13dp"
         android:background="@color/colorPrimary"
         android:elevation="2dp"
         android:text="@string/apply_btn_caption"
         android:textAllCaps="false"
         android:textColor="#272727"
-        android:textSize="16sp" />
+        android:textSize="16sp"/>
 
 </RelativeLayout>
