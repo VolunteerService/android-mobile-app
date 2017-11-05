@@ -3,7 +3,14 @@ package com.alexandergor.uvapp;
 import android.app.Application;
 import android.util.Log;
 
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import io.realm.Realm;
@@ -32,7 +39,7 @@ public class UVSApp extends Application {
         Realm.init(getApplicationContext());
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .schemaVersion(2)
+                .schemaVersion(0)
                 .migration(new ModelsMigration())
                 .build();
 
@@ -53,9 +60,12 @@ public class UVSApp extends Application {
     }
 
     public static UVSApiClient buildApiClient(final String authToken) {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+                .create();
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl("http://dev.vscard.org/api/v1.0/")
-                .addConverterFactory(GsonConverterFactory.create());
+                .addConverterFactory(GsonConverterFactory.create(gson));
 
         httpClient.addInterceptor(new Interceptor() {
             @Override

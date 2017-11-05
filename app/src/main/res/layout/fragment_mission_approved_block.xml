@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="25dp"
+    android:layout_marginTop="25dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:padding="14dp"
+    android:orientation="vertical"
+    android:background="@drawable/mission_success_action_bg"
+    tools:context="com.alexandergor.uvapp.MissionApprovedBlock">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Поздоровляемо! Вашу заявку на участь було підтверджено. Для знайомства з учасниками та обговорення деталей заходьте на telegram канал:"
+        android:textColor="@color/uvs_darkgray"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/missionTelegramLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:layout_marginTop="10dp"
+        android:text=""/>
+
+
+</LinearLayout>

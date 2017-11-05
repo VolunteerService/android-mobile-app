@@ -13,6 +13,7 @@ class modelMissionListAdapter extends RealmBaseAdapter<modelMission> {
     private static class ViewHolder {
         TextView title;
         TextView teaser;
+        TextView additional;
     }
 
     public modelMissionListAdapter(RealmResults<modelMission> missions) {
@@ -30,6 +31,7 @@ class modelMissionListAdapter extends RealmBaseAdapter<modelMission> {
             viewHolder = new ViewHolder();
             viewHolder.title = (TextView) convertView.findViewById(R.id.missionListItemTitle);
             viewHolder.teaser = (TextView) convertView.findViewById(R.id.missionListItemTeaser);
+            viewHolder.additional = (TextView) convertView.findViewById(R.id.missionListItemAdditional);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -39,6 +41,9 @@ class modelMissionListAdapter extends RealmBaseAdapter<modelMission> {
             modelMission item = adapterData.get(position);
             viewHolder.title.setText(item.title);
             viewHolder.teaser.setText(item.teaser);
+            viewHolder.additional.setText(
+                    item.getDate() + ", " + item.city
+            );
         }
 
         return convertView;
