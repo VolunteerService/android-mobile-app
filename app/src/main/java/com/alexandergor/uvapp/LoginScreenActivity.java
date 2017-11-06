@@ -16,6 +16,8 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.io.IOException;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,43 +36,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     private FacebookCallback<LoginResult> fbLoginCallback = new FacebookCallback<LoginResult>() {
         @Override
         public void onSuccess(LoginResult loginResult) {
-            Log.i("Login", "Success login calback");
-
-            String authToken = AccessToken.getCurrentAccessToken().getToken();
-            UVSApiClient api = UVSApp.getUvsApiClient(authToken);
-
-            Call<modelProfile> request = api.getProfile();
-            request.enqueue(new Callback<modelProfile>() {
-                @Override
-                public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
-                    Log.i("API", response.message());
-
-                    Log.i("API", response.toString());
-
-                    UVSApp.UserProfile = response.body();
-                    initProfileActivity(UVSApp.UserProfile);
-                }
-
-                @Override
-                public void onFailure(Call<modelProfile> call, Throwable t) {
-                    Log.i("API", "Failed");
-                }
-            });
-
-            String fcm_id = FirebaseInstanceId.getInstance().getToken();
-            Call<ResponseBody> reqFCMRegister = api.registerFCM(fcm_id);
-            reqFCMRegister.enqueue(new Callback<ResponseBody>() {
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                    Log.i("API", "FCM id registered");
-                    Log.i("API", response.toString());
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("API", "FCM registration failed");
-                }
-            });
+            initProfileActivity();
         }
 
         @Override
@@ -101,25 +67,9 @@ public class LoginScreenActivity extends AppCompatActivity {
         profileTracker = new ProfileTracker() {
             @Override
             protected void onCurrentProfileChanged(Profile oldProfile, Profile currentProfile) {
-                String authToken = AccessToken.getCurrentAccessToken().getToken();
-                UVSApiClient api = UVSApp.getUvsApiClient(authToken);
-                Call<modelProfile> request = api.getProfile();
-                request.enqueue(new Callback<modelProfile>() {
-                    @Override
-                    public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
-                        Log.i("API", response.message());
-
-                        Log.i("API", response.toString());
-
-                        UVSApp.UserProfile = response.body();
-                        initProfileActivity(UVSApp.UserProfile);
-                    }
-
-                    @Override
-                    public void onFailure(Call<modelProfile> call, Throwable t) {
-                        Log.i("API", "Failed");
-                    }
-                });
+                if (AccessToken.getCurrentAccessToken() != null) {
+                    initProfileActivity();
+                }
             }
         };
 
@@ -139,25 +89,7 @@ public class LoginScreenActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if( AccessToken.getCurrentAccessToken() != null) {
-            String authToken = AccessToken.getCurrentAccessToken().getToken();
-            UVSApiClient api = UVSApp.getUvsApiClient(authToken);
-            Call<modelProfile> request = api.getProfile();
-            request.enqueue(new Callback<modelProfile>() {
-                @Override
-                public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
-                    Log.i("API", response.message());
-
-                    Log.i("API", response.toString());
-
-                    UVSApp.UserProfile = response.body();
-                    initProfileActivity(UVSApp.UserProfile);
-                }
-
-                @Override
-                public void onFailure(Call<modelProfile> call, Throwable t) {
-                    Log.i("API", "Failed");
-                }
-            });
+            initProfileActivity();
         }
     }
 
@@ -169,14 +101,8 @@ public class LoginScreenActivity extends AppCompatActivity {
         profileTracker.stopTracking();
     }
 
-    private  void initProfileActivity(modelProfile profile) {
-        Log.i("Login", "init profile activity called");
-
-        if(profile != null) {
-            Log.i("Login", "Profile present - so loading profile activity");
-
-            Intent profileActivity = new Intent(LoginScreenActivity.this, ProfileScreenActivity.class);
-            startActivity(profileActivity);
-        }
+    private  void initProfileActivity() {
+        Intent profileActivity = new Intent(LoginScreenActivity.this, ProfileScreenActivity.class);
+        startActivity(profileActivity);
     }
 }

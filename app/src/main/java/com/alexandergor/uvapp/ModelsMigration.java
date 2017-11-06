@@ -19,5 +19,12 @@ public class ModelsMigration implements RealmMigration {
     @Override
     public void migrate(DynamicRealm realm, long oldVersion, long newVersion) {
         RealmSchema schema = realm.getSchema();
+
+        if(oldVersion == 0) {
+            schema.get("modelMission")
+                .addField("telegram_chat", String.class);
+
+            oldVersion++;
+        }
     }
 }

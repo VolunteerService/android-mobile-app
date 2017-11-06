@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Поздоровляемо! Вашу заявку на участь було підтверджено. Для знайомства з учасниками та обговорення деталей заходьте на telegram канал:"
-        android:textColor="@color/uvs_darkgray"
+        android:textColor="#76b654"
         android:textSize="16sp"/>
 
     <TextView
@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:autoLink="web"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         android:text=""/>
 
 
