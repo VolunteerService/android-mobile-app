@@ -7,54 +7,63 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import javax.annotation.Nullable;
+
+import io.realm.ObjectChangeSet;
 import io.realm.Realm;
+import io.realm.RealmObjectChangeListener;
 
 public class MissionScreenActivity extends AppCompatActivity {
 
     private Realm realm;
+    private UVSApp app;
+    private modelMission mission;
+
+    private final RealmObjectChangeListener<modelMission> missionListener = new RealmObjectChangeListener<modelMission>() {
+        @Override
+        public void onChange(modelMission mission, @Nullable ObjectChangeSet changeSet) {
+            modelParticipant participant = mission.participants.first();
+            Log.i("MissionScreen", "---> " + participant.toString());
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mission_screen);
 
+        app = (UVSApp) this.getApplicationContext();
         realm = Realm.getDefaultInstance();
 
+        Log.i("MissionScreen/onCreate", "app.UserProfile._id: " + app.UserProfile._id);
+
+        setContentView(R.layout.activity_mission_screen);
+
+
         String mission_id = getIntent().getStringExtra("mission");
-        modelMission item = realm.where(modelMission.class).equalTo("_id", mission_id).findFirst();
+        mission = realm.where(modelMission.class).equalTo("_id", mission_id).findFirst();
+        mission.addChangeListener(missionListener);
 
         TextView missionTitle = (TextView) findViewById(R.id.missionTitle);
         TextView missionDescription = (TextView) findViewById(R.id.missionDescription);
         TextView missionDateTime = (TextView) findViewById(R.id.missionDateTime);
         TextView missionCity = (TextView) findViewById(R.id.missionCity);
 
-        Log.i("Mission", item.participants.toString());
+        Log.i("MissionScreen/onCreate", "mission.participants: " + mission.participants.toString());
 
-        modelMissionParticipantListAdatper participantListAdatper = new modelMissionParticipantListAdatper(item.participants);
+        modelMissionParticipantListAdatper participantListAdatper = new modelMissionParticipantListAdatper(mission.participants);
 
         // TODO: 11/4/17  find better solution for listview inside scrollable
         LinearLayout participantsList = (LinearLayout) findViewById(R.id.missionParticipants);
         final int pacticipantsCount = participantListAdatper.getCount();
 
-        if(pacticipantsCount > 0) {
-            TextView participantsLabel = (TextView) findViewById(R.id.participantsLabel);
-            participantsLabel.setText(
-                    String.format(
-                            "Задіяно волонтерів: %d з можливих %d",
-                            pacticipantsCount,
-                            item.max_participants
-                    )
-            );
-        }
-
         modelParticipant currentUserParticipant = null;
 
         for (int i = 0; i < pacticipantsCount; i++) {
             modelParticipant participant = participantListAdatper.getItem(i);
-            Log.i("Participant", participant.id);
-            Log.i("Participant", UVSApp.UserProfile._id);
+            Log.i("MissionScreen/onCreate", String.format("mission.participants[%d].id: %s", i, participant.id));
+            Log.i("MissionScreen/onCreate", String.format("mission.participants[%d].user_id: %s", i, participant.user_id));
 
-            if(participant.id.equals(UVSApp.UserProfile._id)) {
+            if(participant.user_id.equals(app.UserProfile._id)) {
                 currentUserParticipant = participant;
             }
 
@@ -65,17 +74,30 @@ public class MissionScreenActivity extends AppCompatActivity {
             }
         }
 
+        if(pacticipantsCount > 0) {
+            TextView participantsLabel = (TextView) findViewById(R.id.participantsLabel);
+            participantsLabel.setText(
+                    String.format(
+                            "Задіяно волонтерів: %d з можливих %d",
+                            pacticipantsCount,
+                            mission.max_participants
+                    )
+            );
+        }
+
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
         if (currentUserParticipant == null) {
-            fragmentTransaction.add(R.id.missionActionsHolder, new MissionApplyButton());
+            fragmentTransaction.add(
+                    R.id.missionActionsHolder, MissionApplyButton.newInstance(mission._id)
+            );
         } else {
-            Log.i("Participant", currentUserParticipant.status);
+            Log.i("MissionScreen/onCreate", "currentUserParticipant: " + currentUserParticipant.toString());
             switch (currentUserParticipant.status) {
                 case "APPROVED":
                     fragmentTransaction.add(
                             R.id.missionActionsHolder,
-                            MissionApprovedBlock.newInstance("https://t.me/VolunteerTalks")
+                            MissionApprovedBlock.newInstance(mission.telegram_chat)
                     );
                     break;
                 case "DECLINED":
@@ -91,9 +113,15 @@ public class MissionScreenActivity extends AppCompatActivity {
         }
         fragmentTransaction.commit();
 
-        missionDateTime.setText(item.getDate());
-        missionCity.setText(item.city);
-        missionTitle.setText(item.title);
-        missionDescription.setText(item.description);
+        missionDateTime.setText(mission.getDate());
+        missionCity.setText(mission.city);
+        missionTitle.setText(mission.title);
+        missionDescription.setText(mission.description);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }

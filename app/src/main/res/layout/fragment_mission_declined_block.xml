@@ -16,15 +16,15 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Нажаль вашу заявку на участь було відхилено:"
-        android:textColor="@color/uvs_darkgray"
+        android:text="Нажаль вашу заявку було відхилено:"
+        android:textColor="#c12a34"
         android:textSize="16sp"/>
 
     <TextView
         android:id="@+id/missionDeclineComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/uvs_darkgray"
+        android:textColor="#c12a34"
         android:text=""
         android:textSize="16sp"/>
 

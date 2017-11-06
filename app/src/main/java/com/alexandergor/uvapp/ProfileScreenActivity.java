@@ -31,6 +31,46 @@ public class ProfileScreenActivity extends BaseBottomNavigationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_screen);
 
+        final UVSApp app = (UVSApp) this.getApplicationContext();
+
+        String authToken = AccessToken.getCurrentAccessToken().getToken();
+        UVSApiClient api = UVSApp.getUvsApiClient(authToken);
+
+        Call<modelProfile> request = api.getProfile();
+
+        request.enqueue(new Callback<modelProfile>() {
+            @Override
+            public void onResponse(Call<modelProfile> call, Response<modelProfile> response) {
+                Log.i("API", response.message());
+
+                Log.i("API", response.toString());
+
+                app.UserProfile = response.body();
+                TextView coinsView = (TextView) findViewById(R.id.profileCoins);
+                coinsView.setText(String.valueOf(app.UserProfile.vCoin));
+            }
+
+            @Override
+            public void onFailure(Call<modelProfile> call, Throwable t) {
+                Log.i("API", "Failed");
+            }
+        });
+
+        String fcm_id = FirebaseInstanceId.getInstance().getToken();
+        Call<ResponseBody> reqFCMRegister = api.registerFCM(fcm_id);
+        reqFCMRegister.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.i("API", "FCM id registered");
+                Log.i("API", response.toString());
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("API", "FCM registration failed");
+            }
+        });
+
         profile = Profile.getCurrentProfile();
         TextView profileUserNameView = (TextView)findViewById(R.id.profileUserName);
         profileUserNameView.setText(profile.getName());
@@ -40,9 +80,6 @@ public class ProfileScreenActivity extends BaseBottomNavigationActivity {
                 .load(profile.getProfilePictureUri(200, 200))
                 .transform(new CircleTransform())
                 .into(profileUserPictureView);
-
-        TextView coinsView = (TextView) findViewById(R.id.profileCoins);
-        coinsView.setText(String.valueOf(UVSApp.UserProfile.vCoin));
 
         Button logout = (Button)findViewById(R.id.profileLogout);
         logout.setOnClickListener(new View.OnClickListener() {

@@ -19,6 +19,7 @@ public class modelMission extends RealmObject {
     String title;
     String teaser;
     String description;
+    String telegram_chat;
 
     Date start;
     Date finish;
