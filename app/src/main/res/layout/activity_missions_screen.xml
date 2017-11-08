@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="24dp"
         android:layout_below="@+id/allMissionsList"
-        android:background="@drawable/missions_list_bg"
+        android:background="@drawable/uvs_list_bg"
         android:layout_marginTop="-80dp" />
 
     <include

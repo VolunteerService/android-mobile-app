@@ -26,5 +26,32 @@ public class ModelsMigration implements RealmMigration {
 
             oldVersion++;
         }
+
+        if(oldVersion == 1) {
+            schema.create("modelProduct")
+                .addField("_id", String.class, FieldAttribute.PRIMARY_KEY)
+                .addField("title", String.class)
+                .addField("description", String.class)
+                .addField("photo", String.class)
+                .addField("type", String.class)
+                .addField("giver", String.class)
+                .addField("price", double.class)
+                .addField("amount", double.class)
+                .addField("created", Date.class)
+                .addField("updated", Date.class)
+                .addField("active", boolean.class);
+        }
+
+        if(oldVersion == 2) {
+            schema.get("modelProduct")
+                .addField("name", String.class)
+                .removeField("title");
+        }
+
+        if(oldVersion == 3) {
+            schema.get("modelProduct")
+                .removeField("price")
+                .addField("price", int.class);
+        }
     }
 }
