@@ -2,6 +2,7 @@ package com.alexandergor.uvapp;
 
 import android.app.Fragment;
 import android.os.Bundle;
+import android.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,13 @@ public class MissionApplyButton extends Fragment {
                             realm.beginTransaction();
                             realm.insertOrUpdate(mission);
                             realm.commitTransaction();
+
+                            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                            fragmentTransaction.replace(
+                                    R.id.missionActionsHolder,
+                                    new MissionRefuseButton()
+                            );
+                            fragmentTransaction.commit();
                         }
                     }
 
