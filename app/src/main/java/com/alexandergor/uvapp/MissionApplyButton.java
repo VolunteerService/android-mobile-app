@@ -66,9 +66,10 @@ public class MissionApplyButton extends Fragment {
                             realm.commitTransaction();
 
                             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
                             fragmentTransaction.replace(
                                     R.id.missionActionsHolder,
-                                    new MissionRefuseButton()
+                                    MissionRefuseButton.newInstance(mission_id)
                             );
                             fragmentTransaction.commit();
                         }
