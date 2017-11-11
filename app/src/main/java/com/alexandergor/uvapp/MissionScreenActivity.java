@@ -87,7 +87,7 @@ public class MissionScreenActivity extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-        if (currentUserParticipant == null) {
+        if (currentUserParticipant == null || currentUserParticipant.status.equals("REFUSED")) {
             fragmentTransaction.add(
                     R.id.missionActionsHolder, MissionApplyButton.newInstance(mission._id)
             );
@@ -107,7 +107,10 @@ public class MissionScreenActivity extends AppCompatActivity {
                     );
                     break;
                 case "NEW":
-                    fragmentTransaction.add(R.id.missionActionsHolder, new MissionRefuseButton());
+                    fragmentTransaction.add(
+                            R.id.missionActionsHolder,
+                            MissionRefuseButton.newInstance(mission._id)
+                    );
                     break;
             }
         }
