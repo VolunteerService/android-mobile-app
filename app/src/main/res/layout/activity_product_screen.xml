@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.alexandergor.uvapp.ProductScreenActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/uvs_yellow"
+        android:paddingTop="30dp"
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:paddingBottom="13dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/productVCoinsUserAccount"
+            android:text=""
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/productTitle"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="12sp"
+            android:textColor="@color/uvs_darkgray"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Волонтерські шкарпетки жовті, з принтом “ракета”"
+            android:id="@+id/productTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="20sp"
+            android:textColor="@color/uvs_darkgray"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:id="@+id/productPhoto" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Найтепліші шкарпетки у всесвіті. \n\nЗверніть увагу: бавовняна шкарпетка має \nвластивість зменшуватися в процесі \nексплуатації та прання   "
+                android:textColor="@color/uvs_darkgray"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:padding="28dp"
+                android:id="@+id/productDescription" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/productActionHolder"
+                android:background="@drawable/product_action_border"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ця винагорода надана за підтримки"
+                android:textSize="10sp"
+                android:layout_marginTop="11dp"
+                android:textColor="@color/uvs_darkgray"
+                android:textAlignment="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ukrainian Volunteer Service"
+                android:textSize="12sp"
+                android:textColor="@color/uvs_darkgray"
+                android:textAlignment="center"
+                android:paddingTop="4dp"
+                android:layout_marginBottom="28dp"
+                android:id="@+id/productGiver" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
