@@ -78,4 +78,13 @@ public class MissionsScreenActivity extends BaseBottomNavigationActivity {
 
         initNavigation(R.id.action_mission);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent profileActivity = new Intent(
+                MissionsScreenActivity.this,
+                ProfileScreenActivity.class
+        );
+        startActivity(profileActivity);
+    }
 }

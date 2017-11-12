@@ -65,4 +65,13 @@ public class TrophyScreenActivity extends BaseBottomNavigationActivity {
 
         initNavigation(R.id.action_trophy);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent profileActivity = new Intent(
+                TrophyScreenActivity.this,
+                ProfileScreenActivity.class
+        );
+        startActivity(profileActivity);
+    }
 }
