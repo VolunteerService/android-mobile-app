@@ -50,7 +50,7 @@
             android:name=".LoginScreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/NoActionBarNoTransition">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,23 +60,25 @@
         <activity
             android:name=".ProfileScreenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/NoActionBarNoTransition" />
         <activity
             android:name=".MissionsScreenActivity"
             android:label="Доступні місії"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTransition"/>
         <activity
             android:name=".TrophyScreenActivity"
             android:label="Винагороди"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoTransition"/>
         <activity
             android:name=".MissionScreenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/NoActionBarNoTransition" />
         <activity
             android:name=".ProductScreenActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/NoActionBarNoTransition"/>
     </application>
 
 </manifest>
