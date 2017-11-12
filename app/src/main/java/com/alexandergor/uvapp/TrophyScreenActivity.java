@@ -1,6 +1,9 @@
 package com.alexandergor.uvapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.facebook.AccessToken;
@@ -47,7 +50,18 @@ public class TrophyScreenActivity extends BaseBottomNavigationActivity {
         modelProductListAdapter productListAdapter = new modelProductListAdapter(products);
 
         listView.setAdapter(productListAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent productActivity = new Intent(
+                        TrophyScreenActivity.this, ProductScreenActivity.class
+                );
 
+                modelProduct product = (modelProduct) parent.getItemAtPosition(position);
+                productActivity.putExtra("product", product._id);
+                startActivity(productActivity);
+            }
+        });
 
         initNavigation(R.id.action_trophy);
     }

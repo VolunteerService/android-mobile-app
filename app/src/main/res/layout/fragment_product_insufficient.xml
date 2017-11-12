@@ -1,0 +1,62 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context="com.alexandergor.uvapp.ProductInsufficientFunds">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="балів"
+        android:textColor="@color/uvs_darkgray"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/productPrice"
+        app:layout_constraintRight_toRightOf="@+id/productPrice"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice"
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="53dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="20dp"
+        android:text="5000"
+        android:textAlignment="center"
+        android:textColor="@color/uvs_darkgray"
+        android:textSize="48sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="28dp" />
+
+    <TextView
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:text="На вашому рахунку недостатньо балів"
+        android:textColor="#c12a34"
+        android:background="@drawable/mission_declined_action_bg"
+        android:textSize="14sp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingTop="22dp"
+        android:paddingBottom="22dp"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.508" />
+
+</android.support.constraint.ConstraintLayout>
