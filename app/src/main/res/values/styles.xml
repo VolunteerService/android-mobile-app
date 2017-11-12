@@ -25,7 +25,11 @@
         <item name="titleTextColor">@color/uvs_darkgray</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="NoTransition" parent="AppTheme">
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+    <style name="NoActionBarNoTransition" parent="NoTransition">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
