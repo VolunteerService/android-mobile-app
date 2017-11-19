@@ -60,7 +60,7 @@ public class UVSApp extends Application {
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
                 .create();
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://dev.vscard.org/api/v1.0/")
+                .baseUrl(BuildConfig.API_SERVER_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson));
 
         httpClient.addInterceptor(new Interceptor() {
