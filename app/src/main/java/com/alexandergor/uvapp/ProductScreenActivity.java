@@ -50,7 +50,12 @@ public class ProductScreenActivity extends AppCompatActivity {
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
 
-        if (app.UserProfile.vCoin < product.price) {
+        if (product.ordered) {
+            fragmentTransaction.add(
+                    R.id.productActionHolder,
+                    new ProductPurchased()
+            );
+        } else if (app.UserProfile.vCoin < product.price) {
             fragmentTransaction.add(
                 R.id.productActionHolder,
                 ProductInsufficientFunds.newInstance(product.price)

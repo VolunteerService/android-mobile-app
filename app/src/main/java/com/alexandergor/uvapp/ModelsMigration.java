@@ -40,18 +40,31 @@ public class ModelsMigration implements RealmMigration {
                 .addField("created", Date.class)
                 .addField("updated", Date.class)
                 .addField("active", boolean.class);
+
+            oldVersion++;
         }
 
         if(oldVersion == 2) {
             schema.get("modelProduct")
                 .addField("name", String.class)
                 .removeField("title");
+
+            oldVersion++;
         }
 
         if(oldVersion == 3) {
             schema.get("modelProduct")
                 .removeField("price")
                 .addField("price", int.class);
+
+            oldVersion++;
+        }
+
+        if(oldVersion == 4) {
+            schema.get("modelProduct")
+                .addField("ordered", boolean.class);
+
+            oldVersion++;
         }
     }
 }

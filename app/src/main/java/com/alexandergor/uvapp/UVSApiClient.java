@@ -21,6 +21,9 @@ public interface UVSApiClient {
     @GET("products")
     Call<List<modelProduct>> listProducts();
 
+    @POST("products/{id}/buy")
+    Call<modelProduct> buyProduct(@Path("id") String id);
+
     @POST("profile/fcm")
     @FormUrlEncoded
     Call<ResponseBody> registerFCM(@Field("fcm_id") String fcm_id);

@@ -26,4 +26,5 @@ public class modelProduct extends RealmObject {
     double amount;
     String type;
     boolean active;
+    boolean ordered;
 }

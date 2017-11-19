@@ -35,7 +35,7 @@ public class UVSApp extends Application {
         Realm.init(getApplicationContext());
 
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder()
-                .schemaVersion(4)
+                .schemaVersion(5)
                 .migration(new ModelsMigration())
                 .build();
 

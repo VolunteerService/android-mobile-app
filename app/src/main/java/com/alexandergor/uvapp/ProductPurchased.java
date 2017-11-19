@@ -1,10 +1,17 @@
 package com.alexandergor.uvapp;
 
-import android.app.Activity;
+import android.app.Fragment;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-/**
- * Created by ornot on 11/12/17.
- */
+public class ProductPurchased extends Fragment {
 
-public class ProductPurchased extends Activity {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_product_purchased, container, false);
+        return view;
+    }
+
 }

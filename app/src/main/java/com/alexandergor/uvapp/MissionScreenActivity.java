@@ -19,14 +19,6 @@ public class MissionScreenActivity extends AppCompatActivity {
     private UVSApp app;
     private modelMission mission;
 
-    private final RealmObjectChangeListener<modelMission> missionListener = new RealmObjectChangeListener<modelMission>() {
-        @Override
-        public void onChange(modelMission mission, @Nullable ObjectChangeSet changeSet) {
-            modelParticipant participant = mission.participants.first();
-            Log.i("MissionScreen", "---> " + participant.toString());
-        }
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +33,6 @@ public class MissionScreenActivity extends AppCompatActivity {
 
         String mission_id = getIntent().getStringExtra("mission");
         mission = realm.where(modelMission.class).equalTo("_id", mission_id).findFirst();
-        mission.addChangeListener(missionListener);
 
         TextView missionTitle = (TextView) findViewById(R.id.missionTitle);
         TextView missionDescription = (TextView) findViewById(R.id.missionDescription);
